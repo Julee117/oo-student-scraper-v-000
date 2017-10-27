@@ -23,24 +23,37 @@ class Scraper
     sites = doc.css(".social-icon-container a[href]")
     new_site = sites.map { |link| link['href'] }
 
-    twitter_url = new_site.select { |link| link.include?("twitter") }
-    if twitter_url != []
-      scraped_student[:twitter] = twitter_url[0]
-    end
+    # twitter_url = new_site.select { |link| link.include?("twitter") }
+    # if twitter_url != []
+    #   scraped_student[:twitter] = twitter_url[0]
+    # end
+    # 
+    # linkedin_url = new_site.select { |link| link.include?("linkedin") }
+    # if linkedin_url != []
+    #   scraped_student[:linkedin] = linkedin_url[0]
+    # end
+    # 
+    # git_url = new_site.select { |link| link.include?("github") }
+    # if git_url != []
+    #   scraped_student[:github] = git_url[0]
+    # end
+    # 
+    # blog_url = new_site.select { | link| link != twitter_url[0] && link != linkedin_url[0] && link != git_url[0] }
+    # if blog_url != []
+    #   scraped_student[:blog] = blog_url[0]
+    # end
 
-    linkedin_url = new_site.select { |link| link.include?("linkedin") }
-    if linkedin_url != []
-      scraped_student[:linkedin] = linkedin_url[0]
-    end
-
-    git_url = new_site.select { |link| link.include?("github") }
-    if git_url != []
-      scraped_student[:github] = git_url[0]
-    end
-
-    blog_url = new_site.select { | link| link != twitter_url[0] && link != linkedin_url[0] && link != git_url[0] }
-    if blog_url != []
-      scraped_student[:blog] = blog_url[0]
+    #REFACTORED
+    new_site.each do |link|
+      if link.include?("linkedin")
+        scraped_student[:linkedin] = link
+      elsif link.include?("github")
+        scraped_student[:github] = link
+      elsif link.include?("twitter")
+        scraped_student[:twitter] = link
+      else
+        scraped_student[:blog] = link
+      end
     end
 
     scraped_student[:profile_quote] = doc.css(".profile-quote").text
