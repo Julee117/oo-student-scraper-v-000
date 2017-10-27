@@ -20,7 +20,7 @@ class Student
     attributes_hash.each do |key, value|
     #   send("#{key}=", value)
     # end
-      self."#{key}" = value
+      self."#{key}" = "#{value}"
     end
   end
 
