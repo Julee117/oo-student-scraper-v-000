@@ -27,17 +27,17 @@ class Scraper
     # if twitter_url != []
     #   scraped_student[:twitter] = twitter_url[0]
     # end
-    # 
+    #
     # linkedin_url = new_site.select { |link| link.include?("linkedin") }
     # if linkedin_url != []
     #   scraped_student[:linkedin] = linkedin_url[0]
     # end
-    # 
+    #
     # git_url = new_site.select { |link| link.include?("github") }
     # if git_url != []
     #   scraped_student[:github] = git_url[0]
     # end
-    # 
+    #
     # blog_url = new_site.select { | link| link != twitter_url[0] && link != linkedin_url[0] && link != git_url[0] }
     # if blog_url != []
     #   scraped_student[:blog] = blog_url[0]
