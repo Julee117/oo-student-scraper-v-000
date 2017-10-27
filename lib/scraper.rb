@@ -10,7 +10,7 @@ class Scraper
     doc.css(".student-card").each do |post|
       scraped_students << {
         :name => post.css(".student-name").text,
-        :location => post.css("div.card-text-container p.student-location").text,
+        :location => post.css(".student-location").text,
         :profile_url => post.css("a")[0]['href']
       }
     end
