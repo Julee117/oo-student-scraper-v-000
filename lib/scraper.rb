@@ -11,7 +11,7 @@ class Scraper
       scraped_students << {
         :name => post.css("div.card-text-container h4.student-name").text,
         :location => post.css("div.card-text-container p.student-location").text,
-        :profile_url => post.css("a")[0]["href"]
+        :profile_url => post.css("a[href]")[0]
       }
     end
     scraped_students
@@ -22,8 +22,6 @@ class Scraper
     doc = Nokogiri::HTML(open(profile_url))
     sites = doc.css(".social-icon-container a[href]")
     new_site = sites.map { |link| link['href'] }
-
-    name = doc.css(".vitals-text-container h1.profile-name").text
 
     twitter_url = new_site.select { |link| link.include?("twitter") }
     if twitter_url != []
